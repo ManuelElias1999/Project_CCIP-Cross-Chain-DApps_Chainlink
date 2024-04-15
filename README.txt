@@ -1,28 +1,26 @@
-REMIX DEFAULT WORKSPACE
+### Cross-Chain NFT Minting with Chainlink Integration
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+This project consists of a series of Solidity smart contracts enabling NFT minting on a specific blockchain using the Chainlink Cross-Chain Interoperability Protocol (CCIP). These contracts are designed to mint NFTs on the Sepolia blockchain from other blockchains such as Fuji and Mumbai.
 
-This workspace contains 3 directories:
+#### Contracts
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+1. **CrossDestinationMinter.sol**: This contract enables NFT minting on the Sepolia blockchain from a different blockchain using the CCIP. Each generated NFT represents the price of an asset on the source blockchain. The appearance of the NFT varies based on the background color and the facial expression of the emoji depending on the movement of the asset price.
 
-SCRIPTS
+2. **CrossSourceMinter.sol**: This contract is similar to the previous one but specifically designed for the Fuji blockchain. It allows minting NFTs on the Sepolia blockchain from the Fuji blockchain.
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+3. **CrossSourceMinterMumbai.sol**: Similar to the previous contract, but designed for the Mumbai blockchain. It facilitates minting NFTs on the Sepolia blockchain from the Mumbai blockchain.
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
+4. **CrossSourceMinterSepolia.sol**: This contract allows minting NFTs on the Sepolia blockchain from the Sepolia blockchain itself. The functionality is similar to the previous contracts but is designed for cases where NFTs need to be minted directly from the source blockchain.
 
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
+#### Functionality
 
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
+- **NFT Minting on Sepolia from other blockchains**: Each smart contract enables users to mint NFTs on the Sepolia blockchain from other blockchains using the Chainlink CCIP.
 
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+- **Visual Representation of Asset Price**: The appearance of the generated NFT varies based on the movement of the asset price. If the price goes up, the emoji's face will be happy, and the NFT's background will be green. If the price goes down, the emoji's face will be sad, and the NFT's background will be red. If the price remains unchanged, the emoji's face will be normal, and the NFT's background will be blue.
+
+#### Usage
+
+1. Deploy the corresponding contract on the specific blockchain according to the contract you are using (Fuji, Mumbai, or Sepolia).
+2. Configure the contract with the address of the minting contract on the Sepolia blockchain.
+3. Use the functions provided by the contract to mint NFTs on Sepolia from the source blockchain.
+4. Observe the visual representation of the asset price on the minted NFTs.
